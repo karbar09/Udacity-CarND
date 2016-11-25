@@ -1,0 +1,3 @@
+*.p
+Traffic-Signs-P2/Miniflow/*
+*.ipynb_checkpoints*
