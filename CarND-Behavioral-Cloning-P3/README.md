@@ -2,20 +2,19 @@
 
 [//]: # (Image References)
 
-[image2]: ./examples/center.png "Center Driving"
-[image3]: ./examples/recov_1.png "Recovery Image"
-[image4]: ./examples/recov_2.png "Recovery Image"
-[image5]: ./examples/recov_3.png "Recovery Image"
-[image6]: ./examples/recov_1.png "Normal Image"
+[image2]: ./examples/center.jpg "Center Driving"
+[image3]: ./examples/recov_1.jpg "Recovery Image 1"
+[image4]: ./examples/recov_2.jpg "Recovery Image 2"
+[image5]: ./examples/recov_3.jpg "Recovery Image 3"
+[image6]: ./examples/recov_1.jpg "Normal Image"
 [image7]: ./examples/flipped_image.png "Flipped Image"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
----
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -23,25 +22,25 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * README.md or README.pdf summarizing the results
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Model Architecture
+#### 1. Model Architecture
 
 I tried 2 different network architectures: LeNet (model.py lines 86-99) and Nvidia (model.py lines 101-116). The Nvidia architecture trained faster, and performed much better in autonomous mode. 
 
 This network has a layer of normalization, followed by 5 layers of convolution (with RELU activation) and then 3 densely connected layers. The convolutional layers are 3 strided convolutions (2x2 stride, 5x5 filter), followed by 2 non-strided convolutional layers (3x3 filter). They have depths between 24 and 64 and are followed by 3 densely connected layers.
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 I found that adding dropout layers to this network architecture resulted in poorer driving performance on this track. 
 
@@ -49,17 +48,17 @@ To avoid overfitting, i focused on data collection: acquiring different data fro
 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 115). I empirically decided to do training for 5 epochs (model.py line 126) because validation error reached a minimum at this point. Training for longer either kept validation error the same or increased it. 
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training images were collected from both tracks (mostly from the 1st track). More details below on the different approaches to driving around the track. I used image data from all the cameras (left, center, and right), and used cropping and normalization to preprocess the images, and data augmentation (rotations) to add to the dataset.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 My strategy for finding a working model architecture was to try some popular architectures and compare their efficiacy, with respect to rmse and driving performance, on the same set of training data. Specifically, I tried LeNet and the Nvidia architecutures. I picked these 2 because LeNet performs well in image classificaton tasks, and the Nvidia architecture has shown success in this exact task (in their End to End DL paper). 
 
@@ -71,7 +70,7 @@ Finally, more images were collected to help the model deal with tricky situation
 
 Both networks were applied to the training data, and learning epochs were tuned to stop training when validation error didn't fall for each network. The Nvidia network achieved lower mse, and was able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The model architecture:
 
@@ -89,7 +88,7 @@ The model architecture:
     + 10 nodes
 - Output layer (single node)
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 I used a variety of approaches to collect training data. 
 
