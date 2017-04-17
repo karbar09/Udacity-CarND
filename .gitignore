@@ -1,7 +1,11 @@
+*.gitignore
 *.p
 Traffic-Signs-P2/Miniflow/*
 *.ipynb_checkpoints*
 *.gz
-CarND-Behavioral-Cloning-P3/run1/*
-CarND-Behavioral-Cloning-P3/*.ipynb*
+Behavioral-Cloning-P3/run1/*
+Behavioral-Cloning-P3/*.ipynb*
 *.gitignore
+*end-to-end-dl-using-px.pdf
+*.zip
+*.app
