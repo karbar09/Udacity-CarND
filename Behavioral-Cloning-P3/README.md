@@ -77,11 +77,11 @@ The model architecture:
 - Normalization layer
 - Cropping Layer: 70 pixels wide, 25 pixels high from the origin of the image.
 - 5 layers of convolution (all with relu activation):
-        * 2x2 Stride, depth 24, 5x5 filter
-        * 2x2 Stride, depth 36, 5x5 filter
-        * 2x2 Stride, depth 48, 5x5 filter
-        * No stride, depth 64, 3x3 filter
-        * No stride, depth 64, 3x3 filter
+     + 2x2 Stride, depth 24, 5x5 filter
+     + 2x2 Stride, depth 36, 5x5 filter
+     + 2x2 Stride, depth 48, 5x5 filter
+     + No stride, depth 64, 3x3 filter
+     + No stride, depth 64, 3x3 filter
 - 3 densely connected layers
     + 100 nodes
     + 50 nodes
@@ -102,9 +102,7 @@ I used a variety of approaches to collect training data.
 ![alt text][image4]
 ![alt text][image5]
 
-**Data Augmentation** 
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+**Data Augmentation** To augment the data sat, I also flipped images and angles. I did this to help the model generalize and not overfit to left turns (since track 1 has very few right turn curves). Another approach to deal with this was driving in the opposite direction around the track. For example, here is an image that has then been flipped:
 
 ![alt text][image6]
 ![alt text][image7]
