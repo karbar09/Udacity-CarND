@@ -104,13 +104,13 @@ Code to find lines can be found in cells 11 and 12: `find_line_with_window` uses
 
 ###Pipeline (video)
 
-####1. Final Project Video
+#### 1. Final Project Video
 
 Here's a [link to my video result](./project_video.mp4)
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Most difficulties arose from color changes of the lanes and road, as well as shadows falling over lane lines. Curved roads were also a challenge, and I don't think this pipeline performs particularly well on the challenge videos. 
 
