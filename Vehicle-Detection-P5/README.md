@@ -14,13 +14,13 @@ The goals / steps of this project are the following:
 [image2]: ./output_images/hog_features.png
 [image3]: ./output_images/hog_subsampling.png
 [image5]: ./output_images/6_image_heatmap.png
-[video1]: ./test.mp4
+[video1]: ./project.mp4
 
 ### Histogram of Oriented Gradients (HOG)
 
 #### 1. Read in Training data and Extract HOG features
 
-Read in training data in the first code cell (cell 157) of the jupyter notebook. All of the `vehicle` and `non-vehicle` images were read in. Here's an example of 2 images, 1 with a `vehicle` and 1 without a `vehicle`:
+Read in training data in the first code cell (cell 4) of the jupyter notebook. All of the `vehicle` and `non-vehicle` images were read in. Here's an example of 2 images, 1 with a `vehicle` and 1 without a `vehicle`:
 
 ![alt text][image1]
 
@@ -36,7 +36,7 @@ I then explored different color spaces and different `hog` parameters (`orientat
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I encapsulated training/test an SVC in cell 32, used a simple grid search over HOG parameters (cell) to try different HOG parameters and see how they affect the test accuracy. For the sake of expediency, i only allow 4 parameters to vary, and compared test results after training on 900 images and testing on 100 images:
+I encapsulated training/test an SVC in cell 7, used a simple grid search over HOG parameters (cell) to try different HOG parameters and see how they affect the test accuracy. For the sake of expediency, i only allow 4 parameters to vary, and compared test results after training on 900 images and testing on 100 images:
 
 - color space: `HSV`,`HLS`, `YCrCb`
 - orientations: 6 or 9
@@ -47,13 +47,13 @@ A table is printed in cell 55 that shows different levels of accuracy for each p
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM in cell 56 using all the data (with 10% for test). Spatial, Histogram and HOG features were provided as input to the algorithm and default parameters from sklearn were used for the SVM algorithm, and an accuracy of .994 was obtained on the test data.
+I trained a linear SVM in cell 8 using all the data (with 10% for test). Spatial, Histogram and HOG features were provided as input to the algorithm and default parameters from sklearn were used for the SVM algorithm, and an accuracy of .992 was obtained on the test data.
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I used HOG subsamspling with window sizes of 64 pixels and 75% overlap in the verticla/horizontal direction. For speed, i only search on the scale of 1.5, as it seemed to yield better results than using 1 or 2, and also better than using both 1 and 2.
+I used HOG subsamspling with window sizes of 64 pixels and 75% overlap in the verticla/horizontal direction. See the `find_cars` function in cell 22. For speed, i only search on the scale of 1.5, as it seemed to yield better results than using 1 or 2, and also better than using both 1 and 2.
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -64,12 +64,12 @@ Ultimately I searched on 1 scale using YCrCb 3-channel HOG features plus spatial
 ### Video Implementation
 
 #### 1.Video
-Here's a [link to my video result](./test.mp4)
+Here's a [link to my video result](./project.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions. This value removed certain false positives that occured in standalone test images. To deal with false positives in the video, i created a class in cell 145 that stored the last 10 heat maps. Each time a new frame is encountered, it is added to the queue of heat maps, the maps are summed, and the threshold is applied to filter false positives. This allows us to further remove any artifacts from the video.
+I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions. This value removed certain false positives that occured in standalone test images. To deal with false positives in the video, i created a class in cell 14 that stored the last 10 heat maps. Each time a new frame is encountered, it is added to the queue of heat maps, the maps are summed, and the threshold is applied to filter false positives. This allows us to further remove any artifacts from the video.
 
 I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap and construct bounding boxes around them.  
 
