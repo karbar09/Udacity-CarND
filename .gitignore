@@ -9,3 +9,5 @@ Behavioral-Cloning-P3/*.ipynb*
 *end-to-end-dl-using-px.pdf
 *.zip
 *.app
+Vehicle-Detection-P5/vehicles/*
+Vehicle-Detection-P5/non-vehicles/*
