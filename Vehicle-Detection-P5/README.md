@@ -12,7 +12,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 [image1]: ./output_images/car_not_car.png
 [image2]: ./output_images/hog_features.png
-[image3]: ./output_images/hog_subsampling.jpg
+[image3]: ./output_images/hog_subsampling.png
 [image5]: ./output_images/6_image_heatmap.png
 [video1]: ./test.mp4
 
@@ -60,7 +60,6 @@ I used HOG subsamspling with window sizes of 64 pixels and 75% overlap in the ve
 Ultimately I searched on 1 scale using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
 ![alt text][image3]
----
 
 ### Video Implementation
 
